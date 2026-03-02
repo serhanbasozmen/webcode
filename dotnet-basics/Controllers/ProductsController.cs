@@ -1,25 +1,32 @@
+using dotnet_basics.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_basics.Controllers;
     public class ProductsController : Controller
     {
- // localhost:5102/products
         public ActionResult Index()
         {
-            return View(); // Views/Products/Index.cshtml
+            return View(); 
         }
 
- // localhost:5102/products/list
         public ActionResult List()
     {
-        return View(); // Views/Products/List.cshtml
+        return View();
     }
 
 
- // localhost:5102/products/details
   public ActionResult Details()
     {
-        return View(); // Views/Products/Details.cshtml
+  
+       Product product1 = new Product();
+
+       product1.productTitle="Samsung S25 Ultra";
+       product1.productExplation="Titanium White S25 Ultra 256GB";
+       product1.productPrice=110000.43;
+       product1.productImage="samsung-s25.jpg";
+       product1.productStock= false;
+
+        return View(product1); 
     }
 
     }

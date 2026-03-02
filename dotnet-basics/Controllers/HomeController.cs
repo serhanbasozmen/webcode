@@ -4,26 +4,31 @@ namespace dotnet_basics.Controllers;
 
 public class HomeController:Controller
 {
-    //localhoost:5102
-    //localhoost:5102/home
-    //localhoost:5102/home/index
 public ActionResult Index()
     {
-        return View(); // Views/Home/Index.cshtml
+        int number1 = 10;
+        int number2 = 20;
+        // int productPrice = 4000;
+
+        number1 = 30;
+        number2= 40;
+
+        int total = number1 + number2; //70
+
+        ViewData["Total"] = total;
+
+        return View(); 
     }
 
-
-    //localhoost:5102/home/about
 
     public ActionResult About()
     {
-        return View(); // Views/Home/About.cshtml
+        return View(); 
     }
 
-    //localhoost:5102/home/contact
 
     public ActionResult Contact()
     {
-        return  View(); // Views/Home/Contact.cshtml
+        return  View(); 
     }
 }
