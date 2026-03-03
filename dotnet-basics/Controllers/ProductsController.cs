@@ -11,7 +11,18 @@ namespace dotnet_basics.Controllers;
 
         public ActionResult List()
     {
-        return View();
+
+        List<Product> products = new List<Product>
+        {
+            new Product { productExplation="samsung s25 ultra", productPrice=40000, productImage="i1.png", productTitle="niceeee", productStock=true
+            },
+            new Product { productExplation="samsung s23 max", productPrice=20000, productImage="i2.png", productTitle="it's fine", productStock=true
+            },
+            new Product { productExplation="samsung s24 small", productPrice=30000, productImage="i1.png", productTitle="not bad", productStock=false
+            },
+        };
+
+        return View(products);
     }
 
 
