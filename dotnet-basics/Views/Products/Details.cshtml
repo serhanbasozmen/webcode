@@ -1,14 +1,37 @@
     @model Product
 
-    <h1>Products/Details</h1>
- 
+ <div class="row border" >
  <div class="col-4">
     <img src="~/img/@Model.productImage" alt="" class="img-fluid">
  </div>
  
- <div class="col-8">
+ <div class="col-8 border-start p-3">
     <h1>@Model.productTitle</h1>
     <p>@Model.productExplation</p>
     <p>@Model.productPrice</p>
-    <p>@Model.productStock</p>
+
+
+
+@if (Model.productStock) 
+{
+    @if (Model.HowMuchStock > 0) {
+
+
+    <p>In Stock</p>
+    }
+    else{
+        <p>
+            Insufficient stock
+        </p>
+    }
+}
+else
+{
+    <p>
+        Out Of Stock
+    </p>
+}
+
+
+ </div>
  </div>

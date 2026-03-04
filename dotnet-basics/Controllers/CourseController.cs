@@ -5,33 +5,38 @@ namespace dotnet_basics.Controllers;
  
     public class CourseController:Controller
     {
+        
+        List<Course> courses = 
+        [
+        new Course {Id=1, Title = "Javascript Course", Image = "1.jpg",IsActive= true, IsHome=true },
+        new Course {Id=2, Title = "React Course",    Image = "2.jpg",IsActive= true, IsHome=false },
+        new Course {Id=3, Title = "Angular Course",   Image = "3.jpg",IsActive= false, IsHome=false },
+        new Course {Id=4, Title = "NodeJS Course",   Image = "4.jpg",IsActive= true, IsHome=true },
+        new Course {Id=5, Title = "NodeJS Course",   Image = "4.jpg",IsActive= true, IsHome=true },
+        new Course {Id=6, Title = "NodeJS Course",   Image = "4.jpg",IsActive= true, IsHome=true },
+        new Course {Id=7, Title = "NodeJS Course",   Image = "4.jpg",IsActive= true, IsHome=true },
+        new Course {Id=8, Title = "NodeJS Course",   Image = "4.jpg",IsActive= true, IsHome=true },
+     ];
    
-         public ActionResult Index()
+    public ActionResult Index()
     {
-        return View(); 
+
+        return View(courses); 
     }
 
 
-  public ActionResult Details()
+  public ActionResult Details(int id)
     {
-        Course course1 = new Course();
-        course1.Title="Django Course";
-        course1.Image="1.jpg";
+        Course? course = courses.Where(i => i.Id == id).FirstOrDefault();
 
-         return View(course1);
+         return View(course);
     }
 
 
         
     public ActionResult List()
     {
-        // Course[] courses =[course1,course2,course3];
 
-    List<Course> courses = new List<Course> {
-        new Course { Title = "Javascript Course", Image = "1.jpg" },
-        new Course{ Title = "React Course",    Image = "2.jpg" },
-        new Course { Title = "Angular Course",   Image = "3.jpg" }  
-     };
         return View(courses);
     }
 
