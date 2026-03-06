@@ -29,6 +29,6 @@ public ActionResult Index()
 
     public ActionResult Contact()
     {
-        return  View(); 
+            return  View(); 
     }
 }
