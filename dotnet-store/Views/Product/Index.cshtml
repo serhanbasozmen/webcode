@@ -1,0 +1,9 @@
+@{
+    Layout =null;
+}
+@model List<Product>
+
+@foreach(var item in Model)
+{
+    <p>@item.ProductName - @item.Price</p>
+}
