@@ -1,3 +1,4 @@
+using System.IO.Compression;
 using dotnet_store.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +12,34 @@ public class ProductController:Controller
     {
         _context = context;
     }
+
+
     public ActionResult Index()
     {
-        var products = _context.Products.ToList();
+        return View();
+    }
+    public ActionResult List(string url)
+    {
+        var products = _context.Products.Where(i => i.IsActive && i.Category.Url == url).ToList();
         return View(products);
+    }
+
+    public ActionResult Details (int id)
+    {
+        var product = _context.Products.Find(id);
+        
+        if(product == null)
+        {
+            return RedirectToAction("Index","Home");
+        }
+
+        ViewData["SimilarProducts"] = _context.Products
+                                                   .Where(i => i.IsActive && i.CategoryId == product.CategoryId && i.Id != id)
+                                                   .Take(4)
+                                                   .ToList();
+ 
+
+
+        return View(product);
     }
 }

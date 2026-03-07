@@ -29,6 +29,16 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
+// products/phone
+// products/electronic
+// products/major appliances
+
+app.MapControllerRoute(
+    name:"products_by_category",
+    pattern:"products/{url}",
+    defaults: new {controller="Product", action ="List"})
+    .WithStaticAssets();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")

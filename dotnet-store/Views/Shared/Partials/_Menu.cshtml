@@ -1,15 +1,9 @@
- <nav
-class="nav nav-pills flex-column flex-nowrap overflow-auto slider_nav"
-              >
-                <a href="#" class="nav-link active">Electronic</a>
-                <a href="#" class="nav-link">Fashion</a>
-                <a href="#" class="nav-link">Healt</a>
-                <a href="#" class="nav-link">Sports</a>
-                <a href="#" class="nav-link">Books</a>
-                <a href="#" class="nav-link">Food</a>
-                <a href="#" class="nav-link">Food</a>
-                <a href="#" class="nav-link">Food</a>
-                <a href="#" class="nav-link">Food</a>
-                <a href="#" class="nav-link">Food</a>
-                <a href="#" class="nav-link">Food</a>
-              </nav>
+@model List<Category>
+
+ 
+ <nav class="nav nav-pills flex-column flex-nowrap overflow-auto slider_nav">
+            @foreach(var category in Model)
+            {
+               <a href="/products/@category.Url" class="nav-link">@category.CategoryId</a>
+            }
+  </nav>

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Product>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -8,11 +10,11 @@
           <div class="row p-1 p-lg-2 gx-2">
             <div class="col-lg-3 d-none d-lg-block">
               <!-- menu -->
-                 @await Html.PartialAsync("Partials/_Menu")
+                 @await Html.PartialAsync("Partials/_Menu", ViewData["Categories"])
             </div>
             <div class="col-lg-9">
               <!-- sliderk -->
-                 @await Html.PartialAsync("Partials/_Slider")
+               @await Component.InvokeAsync("Slider")
             </div>
           </div>
         </div>
@@ -23,25 +25,13 @@
       <div class="container">
         <h3 class="h4 mb-1 mb-lg-3">Recently Added</h3>
 
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+            @foreach(var product in Model)
+            {
           <div class="col">
-             @await Html.PartialAsync("Partials/_ProductCard")
+             @await Html.PartialAsync("Partials/_ProductCard", product)
           </div>
-          <div class="col">
-             @await Html.PartialAsync("Partials/_ProductCard")
-          </div>
-          <div class="col">
-             @await Html.PartialAsync("Partials/_ProductCard")
-          </div>
-          <div class="col">
-             @await Html.PartialAsync("Partials/_ProductCard")
-          </div>
-          <div class="col">
-            @await Html.PartialAsync("Partials/_ProductCard")
-          </div>
-          <div class="col">
-            @await Html.PartialAsync("Partials/_ProductCard")
-          </div>
+            }  
         </div>
       </div>
     </section>

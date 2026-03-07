@@ -6,19 +6,15 @@ namespace dotnet_store.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+ private readonly DataContext _context;
+    public HomeController(DataContext context)
     {
-        return View();
+        _context = context;
     }
-
-    public IActionResult Privacy()
+    public ActionResult Index()
     {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+        var products = _context.Products.Where(product => product.IsActive && product.Homepage).ToList();
+        ViewData["Categories"] = _context.Categories.ToList();
+        return View(products);
+    } 
 }

@@ -103,14 +103,21 @@
 
 /* gallery */
 .gallery-wrap .img-big-wrap {
-  width: 100%;
-  height: 400px;
   margin-bottom: 1rem;
   text-align: center;
+  inline-size: 100%; /* Kapsayıcı genişliği tam olsun */
+  aspect-ratio: 1 / 1; /* Kapsayıcıyı da kare yapalım */
+  display: flex; /* İçindeki resmi ortalamak için */
+  align-items: center; /* Dikeyde ortala */
+  justify-content: center; /* Yatayda ortala */
+  overflow: hidden; /* Dışarı taşan varsa gizle */
+  background-color: #fff; /* Arka planı beyaz yap ki boşluklar sırıtmasın */
 }
 
 .gallery-wrap .img-big-wrap img {
   max-width: 100%;
+  aspect-ratio: 1 / 1; /* Kare olmaya zorlar */
+  object-fit: contain; /* Resmi bozmadan içine sığdırır */
 }
 
 .gallery-wrap .thumbs-wrap {
