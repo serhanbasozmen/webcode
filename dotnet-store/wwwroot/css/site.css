@@ -9,7 +9,8 @@
 
 .navbar-nav {
   font-family: cursive;
-  gap: 5px;
+  gap: 6px;
+  text-wrap-mode: nowrap;
 }
 
 .navbar-nav .nav-link {

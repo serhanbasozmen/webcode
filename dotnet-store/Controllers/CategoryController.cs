@@ -45,4 +45,45 @@ public class CategoryController:Controller
         
         return RedirectToAction("Index");
     }
+
+    public ActionResult Edit(int id )
+    {
+        var entity = _context.Categories.Select(i => new CategoryEditModel
+        {
+             Id = i.Id,
+             CategoryId = i.CategoryId,
+             Url = i.Url
+        }).FirstOrDefault(i => i.Id == id);
+
+        return View(entity);
+    }
+
+
+
+    [HttpPost]
+    public ActionResult Edit(int id, CategoryEditModel model)
+    {
+       if(id != model.Id)
+        {
+            return RedirectToAction("Index");
+        }
+
+        var entity = _context.Categories.FirstOrDefault(i => i.Id == model.Id);
+
+        if(entity != null)
+        {
+            entity.CategoryId = model.CategoryId;
+            entity.Url = model.Url;
+
+            _context.SaveChanges();
+
+            TempData["Message"] = $"{entity.CategoryId} category updated";            
+
+            return RedirectToAction("Index");
+        }
+
+       return View(model);
+   
+    }
+
 }

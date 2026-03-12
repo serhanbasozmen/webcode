@@ -59,7 +59,9 @@
                       <td>@product.CategoryId</td>
                       <td class="text-nowrap">
                         <a
-                          href="add-category.html"
+                          asp-controller="Product"
+                          asp-action="Edit"
+                          asp-route-id="@product.Id"
                           class="btn btn-primary btn-sm"
                         >
                           <i class="fa-solid fa-pen-to-square"></i>

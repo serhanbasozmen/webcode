@@ -36,7 +36,9 @@
                       <td>@cat.ProductNumber</td>
                       <td class="text-nowrap">
                         <a
-                          href="add-category.html"
+                           asp-controller="Category"
+                           asp-action="Edit" 
+                           asp-route-id="@cat.Id"
                           class="btn btn-primary btn-sm"
                         >
                           <i class="fa-solid fa-pen-to-square"></i>
