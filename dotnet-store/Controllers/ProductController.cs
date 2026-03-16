@@ -16,9 +16,16 @@ public class ProductController:Controller
     }
 
 
-    public ActionResult Index()
+    public ActionResult Index(int? category)
     {
-        var products =_context.Products.Select(i => new ProductGetModel
+        var query = _context.Products.AsQueryable();
+
+        if(category != null)
+        {
+            query = query.Where(i => i.CategoryId == category);
+        }
+ 
+        var products = query.Select(i => new ProductGetModel
         {
                 Id = i.Id,
                 ProductName = i.ProductName,
@@ -29,6 +36,8 @@ public class ProductController:Controller
                 Image=i.Image
             
         }).ToList();
+
+        ViewBag.Categories =  new SelectList(_context.Categories.ToList(), "Id","CategoryId", category);
 
         return View(products);
     }

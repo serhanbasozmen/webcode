@@ -14,6 +14,25 @@
               </a>
             </div>
             <div class="card-body">
+
+            <form method="get">
+                    <div class="input-group mb-2">
+                        <select name="category" class="form-select" asp-items="ViewBag.Categories">
+                            <option value="" selected>All</option>
+                        </select>
+                        <button class="btn btn-success" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+            </form>
+
+            @if(Model.Count == 0)
+            {
+                <p class="text-danger mb-3">Product Not Found!</p>
+            }
+            else
+            {
+           
               <div class="table-responsive">
                 <table
                   class="table table-bordered table-hover table-strip mb-0"
@@ -80,6 +99,8 @@
                   </tbody>
                 </table>
               </div>
+
+            }
             </div>
           </div>
         </div>

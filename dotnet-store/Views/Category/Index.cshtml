@@ -43,7 +43,7 @@
                         >
                           <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <a href="product.html" class="btn btn-primary btn-sm">
+                        <a asp-controller="Product" asp-action="Index" asp-route-category="@cat.Id" class="btn btn-primary btn-sm">
                           <i class="fa-solid fa-right-long"></i>
                         </a>
                         @if(cat.ProductNumber == 0 )

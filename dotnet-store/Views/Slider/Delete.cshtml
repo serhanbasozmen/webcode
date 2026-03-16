@@ -1,0 +1,24 @@
+@model Slider
+@{
+    Layout = "_AdminLayout";
+}
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+        <img src="~/img/@Model.Image" class="card-img-top" alt="">
+        <div class="card-body text-center shadow rounded-4 fs-4 fw-bold text-danger">
+       <p>
+        @Model.Title are you sure the delete this slider ?
+        </p>
+        <form asp-controller="Slider" asp-action="DeleteConfirm" method="post">
+            <input type="hidden" name="id" value="@Model.Id">
+            <button type="submit" class="btn btn-danger p-2 m-2">Delete</button>
+            <a asp-controller="Slider" asp-action="Index" class="btn btn-info p-2 m-2">Cancel</a>
+        </form>
+            </div>
+        </div>
+       
+    </div>
+</div>
