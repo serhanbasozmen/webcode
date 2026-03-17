@@ -1,11 +1,12 @@
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace  dotnet_store.Models;
 
-public class DataContext : DbContext
+public class DataContext : IdentityDbContext<IdentityUser>
 {
-    // constructor methods
     public DataContext(DbContextOptions<DataContext> options):base(options)
     {
         

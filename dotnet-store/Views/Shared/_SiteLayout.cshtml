@@ -22,9 +22,8 @@
   </head>
   <body class="bg-light">
     <header>
-      @await Html.PartialAsync("Partials/Site/_Topbar")
-      @await Component.InvokeAsync("Navbar")
-      
+      @await Html.PartialAsync("Partials/Site/_Topbar")      
+      @RenderSection("Bar",required: false)
     </header>
 
     <main>

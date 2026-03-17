@@ -1,4 +1,5 @@
 using dotnet_store.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<DataContext>(options =>
   var connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); 
   options.UseSqlite(connectionString);
 });
+
+builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<DataContext>();
 
 var app = builder.Build();
 

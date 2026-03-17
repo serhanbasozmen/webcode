@@ -1,5 +1,8 @@
 @model List<Product>
 
+@section Bar{
+      @await Component.InvokeAsync("Navbar")
+ }
 
     <section class="mt-3">
       <div class="container">

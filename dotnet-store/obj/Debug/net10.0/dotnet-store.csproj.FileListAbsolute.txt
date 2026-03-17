@@ -214,3 +214,4 @@ C:\Users\Serhan\Desktop\Languages\dotnet-store\obj\Debug\net10.0\compressed\svnf
 C:\Users\Serhan\Desktop\Languages\dotnet-store\obj\Debug\net10.0\compressed\w3sjv5b19z-{0}-dyy5bgqo4f-dyy5bgqo4f.gz
 C:\Users\Serhan\Desktop\Languages\dotnet-store\obj\Debug\net10.0\compressed\49kswhn6un-{0}-r9rfmr9fhe-r9rfmr9fhe.gz
 C:\Users\Serhan\Desktop\Languages\dotnet-store\obj\Debug\net10.0\compressed\lc716ummtx-{0}-gncqqgppyq-gncqqgppyq.gz
+C:\Users\Serhan\Desktop\Languages\dotnet-store\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
