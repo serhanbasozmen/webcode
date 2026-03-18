@@ -5,9 +5,9 @@ namespace dotnet_store.Models;
 public class AccountCreateModel
 {
     [Required]
-    [Display(Name ="Username")]
-    [RegularExpression("^[a-zA-Z0-9]*$",ErrorMessage ="Please enter only letters and numbers.")]
-    public string Username { get; set; } = null!;
+    [Display(Name ="FullName")]
+    // [RegularExpression("^[a-zA-Z0-9]*$",ErrorMessage ="Please enter only letters and numbers.")]
+    public string FullName { get; set; } = null!;
 
     [Required]
     [Display(Name ="Email")]

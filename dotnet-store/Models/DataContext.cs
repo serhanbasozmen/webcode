@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace  dotnet_store.Models;
 
-public class DataContext : IdentityDbContext<IdentityUser>
+public class DataContext : IdentityDbContext<AppUser,AppRole,int>
 {
     public DataContext(DbContextOptions<DataContext> options):base(options)
     {

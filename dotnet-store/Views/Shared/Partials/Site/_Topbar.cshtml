@@ -10,18 +10,42 @@
 
             <div class="col-lg-5 col-8 col-8 order-lg-last">
               <div class="text-end">
-                <a href="#" class="btn btn-light">
-                  <i class="fa fa-user"></i>
+
+                @if(User.Identity?.IsAuthenticated == true)
+                {
+
+                <a asp-controller="Account" asp-action="Settings" class="btn btn-light">
+                  <i class="fa-solid fa-user"></i>
                   <span class="ms-1 d-none d-md-inline-block">My Account</span>
                 </a>
-                <a href="#" class="btn btn-light">
-                  <i class="fa fa-heart"></i>
-                  <span class="ms-1 d-none d-md-inline-block">My List</span>
+                
+                 <a asp-controller="Account" asp-action="LogOut" class="btn btn-light">
+                  <i class="fa-solid fa-sign-out"></i>
+                  <span class="ms-1 d-none d-md-inline-block">SignOut</span>
                 </a>
+                  } 
+                  else 
+                  {
+
+                <a asp-controller="Account" asp-action="Login" class="btn btn-light">
+                  <i class="fa-solid fa-user"></i>
+                  <span class="ms-1 d-none d-md-inline-block">Login</span>
+                </a>
+                <a asp-controller="Account" asp-action="Create" class="btn btn-light">
+                  <i class="fa-solid fa-sign-in"></i>
+                  <span class="ms-1 d-none d-md-inline-block">Sign Up</span>
+                </a>
+                <a asp-controller="Account" asp-action="Create" class="btn btn-light">
+                  <i class="fa-solid fa-sign-out"></i>
+                  <span class="ms-1 d-none d-md-inline-block">SignOut</span>
+                </a>
+                  }
+
                 <a href="shopping-cart.html" class="btn btn-light">
                   <i class="fa fa-shopping-cart"></i>
                   <span class="ms-1 d-none d-md-inline-block">My Cart</span>
                 </a>
+
               </div>
             </div>
             <div class="col-lg-5">

@@ -1,6 +1,7 @@
 using dotnet_store.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,31 @@ builder.Services.AddDbContext<DataContext>(options =>
   options.UseSqlite(connectionString);
 });
 
-builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<DataContext>();
+builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<DataContext>();
+
+builder.Services.Configure<IdentityOptions>(Options =>
+{
+   Options.Password.RequiredLength = 7;
+   Options.Password.RequireNonAlphanumeric = false;
+   Options.Password.RequireUppercase= false;
+   Options.Password.RequireLowercase=false;
+   Options.Password.RequireDigit=false;
+
+   Options.User.RequireUniqueEmail = true;
+//    Options.User.AllowedUserNameCharacters="abcdefghijklmnopqrstuvwxy0123456789";
+
+   Options.Lockout.MaxFailedAccessAttempts=5;
+   Options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromMinutes(5);
+});
+
+
+builder.Services.ConfigureApplicationCookie(Options =>
+{
+    Options.LoginPath ="/Account/Login";
+    Options.AccessDeniedPath = "/Account/AccessDenied";
+    Options.ExpireTimeSpan = TimeSpan.FromDays(30);
+    Options.SlidingExpiration = true;
+});
 
 var app = builder.Build();
 
@@ -27,7 +52,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 // app.MapStaticAssets();
