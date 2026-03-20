@@ -97,6 +97,8 @@ public class AccountController : Controller
         return View();
     }
 
+
+    [Authorize]
     public async Task<ActionResult> LogOut()
     {
         await _signInManager.SignOutAsync();
@@ -105,6 +107,11 @@ public class AccountController : Controller
 
     [Authorize]
     public   ActionResult  Settings()
+    {
+        return View();
+    }
+
+    public ActionResult AccessDenied()
     {
         return View();
     }

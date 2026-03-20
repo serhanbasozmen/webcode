@@ -6,12 +6,15 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace dotnet_store.Controllers;
 
+[Authorize(Roles ="Admin")]
 public class RoleController : Controller
 {
     private RoleManager<AppRole> _roleManager;
-    public RoleController (RoleManager<AppRole> roleManager)
+    private UserManager<AppUser> _userManager;
+    public RoleController (RoleManager<AppRole> roleManager,UserManager<AppUser> userManager)
     {
-        _roleManager = roleManager;        
+        _roleManager = roleManager;   
+        _userManager = userManager; 
     }
     public ActionResult Index()
     {
@@ -76,5 +79,43 @@ public class RoleController : Controller
             }
         }
         return View(model);
+    }
+
+    
+    public async Task<ActionResult> Delete(string? id)
+    {
+        if(id == null)
+        {
+            return RedirectToAction("Index");
+        }
+        var entity = await _roleManager.FindByIdAsync(id);
+
+        if(entity != null)
+        {
+            ViewBag.Users = await _userManager.GetUsersInRoleAsync(entity.Name!);
+            return View(entity);
+        }
+
+        return RedirectToAction("Index");
+    }
+
+    public async Task<ActionResult> DeleteConfirm(string? id)
+    {
+        if(id == null)
+        {
+            return RedirectToAction("Index");
+        }
+
+          var entity = await _roleManager.FindByIdAsync(id);
+
+        if(entity != null)
+        {
+          await _roleManager.DeleteAsync(entity);
+
+          TempData["Message"] = $"{entity.Name} this role deleted.";
+        }
+        
+        return RedirectToAction("Index");
+
     }
 }

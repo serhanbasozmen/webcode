@@ -1,5 +1,5 @@
 @using Microsoft.AspNetCore.Identity
-@model IEnumerable<IdentityUser>
+@model IEnumerable<AppUser>
 @{
     Layout = "_AdminLayout";
 }
@@ -11,7 +11,7 @@
               class="card-header py-1 d-flex justify-content-between align-items-center"
             >
               <h5 class="card-title">Users</h5>
-              <a  href="#" class="btn btn-sm btn-primary">
+              <a  asp-action="Create"   class="btn btn-sm btn-primary">
                 <i class="fa-solid fa-plus"></i>
               </a>
             </div>
@@ -21,7 +21,7 @@
                   <thead class="table-secondary">
                     <tr>
                       <th>Id</th>
-                      <th>Username</th>
+                      <th>Full Name</th>
                       <th>Email</th>
                       <th style="width: 50px"></th>
                     </tr>
@@ -31,7 +31,7 @@
                     {
                     <tr>
                       <td>@cat.Id</td>
-                      <td>@cat.UserName</td>
+                      <td>@cat.FullName</td>
                       <td>@cat.Email</td>
                       <td class="text-nowrap">
                         <a

@@ -21,7 +21,7 @@
                     <tr>
                       <th>Id</th>
                       <th>Role Name</th>
-                      <th style="width: 50px"></th>
+                      <th style="width: 90px"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -37,6 +37,12 @@
                           class="btn btn-primary btn-sm"
                         >
                           <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                         <a
+                           asp-action="Delete" 
+                           asp-route-id="@item.Id"
+                          class="btn btn-danger btn-sm">
+                          <i class="fa-solid fa-trash"></i>
                         </a>
                       </td>
                     </tr>

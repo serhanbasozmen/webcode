@@ -1,11 +1,13 @@
 using System.IO.Compression;
 using dotnet_store.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_store.Controllers;
 
+[Authorize(Roles ="Admin")]
 public class ProductController:Controller
 {
     // Dependecy Injection => DI
@@ -14,7 +16,6 @@ public class ProductController:Controller
     {
         _context = context;
     }
-
 
     public ActionResult Index(int? category)
     {
@@ -43,6 +44,7 @@ public class ProductController:Controller
     }
 
     
+    [AllowAnonymous]
     public ActionResult List(string url, string q)
     {
         var query = _context.Products.Where(i => i.IsActive);  // Queryable
@@ -82,6 +84,7 @@ public class ProductController:Controller
 
         return View(product);
     }
+
 
     public ActionResult Create()
     {
