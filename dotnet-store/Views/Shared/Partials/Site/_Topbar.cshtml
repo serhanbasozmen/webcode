@@ -13,8 +13,15 @@
 
                 @if(User.Identity?.IsAuthenticated == true)
                 {
+                     @if(User.IsInRole("Admin"))
+                    {
+                     <a asp-controller="Admin" asp-action="Index" class="btn btn-warning" target="_blank">
+                       <i class="fa-solid fa-lock"></i>
+                     <span class="ms-1 d-none d-md-inline-block">Admin</span>
+                    </a>
+                    }
 
-                <a asp-controller="Account" asp-action="Settings" class="btn btn-light">
+                <a asp-controller="Account" asp-action="EditUser" class="btn btn-light">
                   <i class="fa-solid fa-user"></i>
                   <span class="ms-1 d-none d-md-inline-block">My Account</span>
                 </a>
@@ -26,7 +33,7 @@
                   } 
                   else 
                   {
-
+                   
                 <a asp-controller="Account" asp-action="Login" class="btn btn-light">
                   <i class="fa-solid fa-user"></i>
                   <span class="ms-1 d-none d-md-inline-block">Login</span>

@@ -10,31 +10,31 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
-  var connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); 
-  options.UseSqlite(connectionString);
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseSqlite(connectionString);
 });
 
-builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<DataContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(Options =>
 {
-   Options.Password.RequiredLength = 7;
-   Options.Password.RequireNonAlphanumeric = false;
-   Options.Password.RequireUppercase= false;
-   Options.Password.RequireLowercase=false;
-   Options.Password.RequireDigit=false;
+    Options.Password.RequiredLength = 7;
+    Options.Password.RequireNonAlphanumeric = false;
+    Options.Password.RequireUppercase = false;
+    Options.Password.RequireLowercase = false;
+    Options.Password.RequireDigit = false;
 
-   Options.User.RequireUniqueEmail = true;
-//    Options.User.AllowedUserNameCharacters="abcdefghijklmnopqrstuvwxy0123456789";
+    Options.User.RequireUniqueEmail = true;
+    //    Options.User.AllowedUserNameCharacters="abcdefghijklmnopqrstuvwxy0123456789";
 
-   Options.Lockout.MaxFailedAccessAttempts=5;
-   Options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromMinutes(5);
+    Options.Lockout.MaxFailedAccessAttempts = 5;
+    Options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
 });
 
 
 builder.Services.ConfigureApplicationCookie(Options =>
 {
-    Options.LoginPath ="/Account/Login";
+    Options.LoginPath = "/Account/Login";
     Options.AccessDeniedPath = "/Account/AccessDenied";
     Options.ExpireTimeSpan = TimeSpan.FromDays(30);
     Options.SlidingExpiration = true;
@@ -60,9 +60,9 @@ app.UseStaticFiles();
 
 
 app.MapControllerRoute(
-    name:"products_by_category",
-    pattern:"products/{url?}",
-    defaults: new {controller="Product", action ="List"})
+    name: "products_by_category",
+    pattern: "products/{url?}",
+    defaults: new { controller = "Product", action = "List" })
     .WithStaticAssets();
 
 app.MapControllerRoute(
