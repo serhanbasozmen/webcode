@@ -1,0 +1,23 @@
+@model AppUser
+@{
+    Layout = "_AdminLayout";
+}
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body text-center shadow rounded-4 fs-4 fw-bold text-danger">
+                <p>
+                    @Model.FullName are you sure the delete this user ?
+                </p>
+                <form asp-controller="User" asp-action="DeleteConfirm" method="post">
+                    <input type="hidden" name="id" value="@Model.Id">
+                    <button type="submit" class="btn btn-danger p-2 m-2">Delete</button>
+                    <a asp-controller="User" asp-action="Index" class="btn btn-info p-2 m-2">Cancel</a>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

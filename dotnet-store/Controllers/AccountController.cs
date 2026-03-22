@@ -12,10 +12,13 @@ public class AccountController : Controller
 {
     private UserManager<AppUser> _usermanager;
     private SignInManager<AppUser> _signInManager;
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+
+    private IEmailService _emailService;
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService)
     {
         _usermanager = userManager;
         _signInManager = signInManager;
+        _emailService = emailService;
     }
 
     public ActionResult Create()
@@ -226,7 +229,10 @@ public class AccountController : Controller
         var token = await _usermanager.GeneratePasswordResetTokenAsync(user);
 
         var url = Url.Action("ResetPassword", "Account", new { userId = user.Id, token });
-        // send mail
+
+        var link = $"<a href='http://localhost:5103{url}'>New Password</a>";
+
+        await _emailService.SendEmailAsync(user.Email!, "ResetPassword", link);
         TempData["Message"] = "You can reset your password using the link sent to your email address.";
 
         return RedirectToAction("Login");
