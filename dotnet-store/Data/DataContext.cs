@@ -3,23 +3,24 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace  dotnet_store.Models;
+namespace dotnet_store.Models;
 
-public class DataContext : IdentityDbContext<AppUser,AppRole,int>
+public class DataContext : IdentityDbContext<AppUser, AppRole, int>
 {
-    public DataContext(DbContextOptions<DataContext> options):base(options)
+    public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
-        
+
     }
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Slider> Sliders { get; set; }
+    public DbSet<Cart> Carts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Slider>().HasData( 
+        modelBuilder.Entity<Slider>().HasData(
             new List<Slider>
             {
                 new Slider{ Id=1, Title="Slider 1 Title", Explanation="Slider 1 Explanataion" , Image="slider-1.jpeg", IsActive=true, Index=0},
@@ -47,89 +48,88 @@ public class DataContext : IdentityDbContext<AppUser,AppRole,int>
         modelBuilder.Entity<Product>().HasData(
             new List<Product>()
             {
-                new Product(){ 
-                    Id = 1, 
+                new Product(){
+                    Id = 1,
                     ProductName="Apple Watch 6",
-                    Price=30000, 
-                    IsActive=true, 
-                    Image="1.jpeg", 
-                    Homepage=true, 
+                    Price=30000,
+                    IsActive=true,
+                    Image="1.jpeg",
+                    Homepage=true,
                     Explanation=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, debitis blanditiis corrupti ducimus numquam saepe praesentium est sed! Repellendus architecto sit suscipit nobis at veritatis illum rem placeat debitis eius.",
                     CategoryId=1
                     },
 
-                new Product(){ 
-                    Id = 2, 
+                new Product(){
+                    Id = 2,
                     ProductName="Apple Watch 7",
-                    Price=35000, 
-                    IsActive=false, 
-                    Image="2.jpeg", 
-                    Homepage=true, 
+                    Price=35000,
+                    IsActive=false,
+                    Image="2.jpeg",
+                    Homepage=true,
                     Explanation=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, debitis blanditiis corrupti ducimus numquam saepe praesentium est sed! Repellendus architecto sit suscipit nobis at veritatis illum rem placeat debitis eius.",
                     CategoryId=2},
 
-                new Product(){ 
-                    Id = 3, 
+                new Product(){
+                    Id = 3,
                     ProductName="Apple Watch 8",
-                    Price=40000, 
-                    IsActive=true, 
-                    Image="3.jpeg", 
-                    Homepage=true, 
+                    Price=40000,
+                    IsActive=true,
+                    Image="3.jpeg",
+                    Homepage=true,
                     Explanation=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, debitis blanditiis corrupti ducimus numquam saepe praesentium est sed! Repellendus architecto sit suscipit nobis at veritatis illum rem placeat debitis eius.",
                     CategoryId=3},
 
-                new Product(){ 
-                    Id = 4, 
+                new Product(){
+                    Id = 4,
                     ProductName="Apple Watch 9",
-                    Price=45000, 
-                    IsActive=true, 
-                    Image="4.jpeg", 
-                    Homepage=false, 
+                    Price=45000,
+                    IsActive=true,
+                    Image="4.jpeg",
+                    Homepage=false,
                     Explanation=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, debitis blanditiis corrupti ducimus numquam saepe praesentium est sed! Repellendus architecto sit suscipit nobis at veritatis illum rem placeat debitis eius.",
                     CategoryId=4},
 
-                new Product(){ 
-                    Id = 5, 
+                new Product(){
+                    Id = 5,
                     ProductName="Apple Watch 10",
-                    Price=50000, 
-                    IsActive=false, 
-                    Image="5.jpeg", 
-                    Homepage=true, 
+                    Price=50000,
+                    IsActive=false,
+                    Image="5.jpeg",
+                    Homepage=true,
                     Explanation=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, debitis blanditiis corrupti ducimus numquam saepe praesentium est sed! Repellendus architecto sit suscipit nobis at veritatis illum rem placeat debitis eius.",
                     CategoryId=5},
 
-                new Product(){ 
-                    Id = 6, 
+                new Product(){
+                    Id = 6,
                     ProductName="Apple Watch 11",
-                    Price=55000, 
-                    IsActive=true, 
-                    Image="6.jpeg", 
-                    Homepage=true, 
+                    Price=55000,
+                    IsActive=true,
+                    Image="6.jpeg",
+                    Homepage=true,
                     Explanation=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, debitis blanditiis corrupti ducimus numquam saepe praesentium est sed! Repellendus architecto sit suscipit nobis at veritatis illum rem placeat debitis eius.",
                     CategoryId=2},
 
-                new Product(){ 
-                    Id = 7, 
+                new Product(){
+                    Id = 7,
                     ProductName="Apple Watch 12",
-                    Price=60000, 
-                    IsActive=true, 
-                    Image="7.jpeg", 
-                    Homepage=true, 
+                    Price=60000,
+                    IsActive=true,
+                    Image="7.jpeg",
+                    Homepage=true,
                     Explanation=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, debitis blanditiis corrupti ducimus numquam saepe praesentium est sed! Repellendus architecto sit suscipit nobis at veritatis illum rem placeat debitis eius.",
                     CategoryId=3},
-                    
-                new Product(){ 
-                    Id = 8, 
+
+                new Product(){
+                    Id = 8,
                     ProductName="Apple Watch 13",
-                    Price=65000, 
-                    IsActive=true, 
-                    Image="8.jpeg", 
-                    Homepage=true, 
+                    Price=65000,
+                    IsActive=true,
+                    Image="8.jpeg",
+                    Homepage=true,
                     Explanation=" Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea, debitis blanditiis corrupti ducimus numquam saepe praesentium est sed! Repellendus architecto sit suscipit nobis at veritatis illum rem placeat debitis eius.",
                     CategoryId=4}
             }
         );
     }
 }
- 
- 
+

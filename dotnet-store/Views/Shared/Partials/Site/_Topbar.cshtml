@@ -1,77 +1,69 @@
 @using Microsoft.EntityFrameworkCore.Metadata.Internal
 <section class="top-bar">
-        <div class="container">
-          <div class="row gy-2 align-items-center">
+    <div class="container">
+        <div class="row gy-2 align-items-center">
             <div class="col-lg-2 col-4 col-4">
-              <a href="/" class="navbar-brand"
-                ><i class="fa-solid fa-truck-fast"></i> E-Commerce</a
-              >
+                <a href="/" class="navbar-brand"><i class="fa-solid fa-truck-fast"></i> E-Commerce</a>
             </div>
 
             <div class="col-lg-5 col-8 col-8 order-lg-last">
-              <div class="text-end">
+                <div class="text-end">
 
-                @if(User.Identity?.IsAuthenticated == true)
-                {
-                     @if(User.IsInRole("Admin"))
+                    @if (User.Identity?.IsAuthenticated == true)
                     {
-                     <a asp-controller="Admin" asp-action="Index" class="btn btn-warning" target="_blank">
-                       <i class="fa-solid fa-lock"></i>
-                     <span class="ms-1 d-none d-md-inline-block">Admin</span>
-                    </a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="Admin" asp-action="Index" class="btn btn-warning" target="_blank">
+                                <i class="fa-solid fa-lock"></i>
+                                <span class="ms-1 d-none d-md-inline-block">Admin</span>
+                            </a>
+                        }
+
+                        <a asp-controller="Account" asp-action="EditUser" class="btn btn-light">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="ms-1 d-none d-md-inline-block">My Account</span>
+                        </a>
+                
+                        <a asp-controller="Account" asp-action="LogOut" class="btn btn-light">
+                            <i class="fa-solid fa-sign-out"></i>
+                            <span class="ms-1 d-none d-md-inline-block">SignOut</span>
+                        </a>
+                    }
+                    else
+                    {
+                   
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-light">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="ms-1 d-none d-md-inline-block">Login</span>
+                        </a>
+                        <a asp-controller="Account" asp-action="Create" class="btn btn-light">
+                            <i class="fa-solid fa-sign-in"></i>
+                            <span class="ms-1 d-none d-md-inline-block">Sign Up</span>
+                        </a>
+                        <a asp-controller="Account" asp-action="Create" class="btn btn-light">
+                            <i class="fa-solid fa-sign-out"></i>
+                            <span class="ms-1 d-none d-md-inline-block">SignOut</span>
+                        </a>
                     }
 
-                <a asp-controller="Account" asp-action="EditUser" class="btn btn-light">
-                  <i class="fa-solid fa-user"></i>
-                  <span class="ms-1 d-none d-md-inline-block">My Account</span>
-                </a>
-                
-                 <a asp-controller="Account" asp-action="LogOut" class="btn btn-light">
-                  <i class="fa-solid fa-sign-out"></i>
-                  <span class="ms-1 d-none d-md-inline-block">SignOut</span>
-                </a>
-                  } 
-                  else 
-                  {
-                   
-                <a asp-controller="Account" asp-action="Login" class="btn btn-light">
-                  <i class="fa-solid fa-user"></i>
-                  <span class="ms-1 d-none d-md-inline-block">Login</span>
-                </a>
-                <a asp-controller="Account" asp-action="Create" class="btn btn-light">
-                  <i class="fa-solid fa-sign-in"></i>
-                  <span class="ms-1 d-none d-md-inline-block">Sign Up</span>
-                </a>
-                <a asp-controller="Account" asp-action="Create" class="btn btn-light">
-                  <i class="fa-solid fa-sign-out"></i>
-                  <span class="ms-1 d-none d-md-inline-block">SignOut</span>
-                </a>
-                  }
+                    <a asp-controller="Cart" asp-action="Index" class="btn btn-light">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="ms-1 d-none d-md-inline-block">My Cart</span>
+                    </a>
 
-                <a href="shopping-cart.html" class="btn btn-light">
-                  <i class="fa fa-shopping-cart"></i>
-                  <span class="ms-1 d-none d-md-inline-block">My Cart</span>
-                </a>
-
-              </div>
+                </div>
             </div>
             <div class="col-lg-5">
-              <form asp-controller="Product" asp-action="List" method="get">
-                <div class="input-group">
-                  <input
-                    name="q"
-                    type="text"
-                    placeholder="Keyword"
-                    class="form-control"
-                    value="@ViewData["q"]"
-                  />
-                  <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </div>
-              </form>
+                <form asp-controller="Product" asp-action="List" method="get">
+                    <div class="input-group">
+                        <input name="q" type="text" placeholder="Keyword" class="form-control" value="@ViewData["q"]" />
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
-          </div>
         </div>
-      </section>
+    </div>
+</section>
       

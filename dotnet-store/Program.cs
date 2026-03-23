@@ -9,13 +9,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<IEmailService, SmtpEmailService>();
 builder.Services.AddControllersWithViews();
 
+
 builder.Services.AddDbContext<DataContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     options.UseSqlite(connectionString);
 });
 
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<DataContext>()
+.AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(Options =>
 {
