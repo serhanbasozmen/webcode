@@ -1,12 +1,13 @@
 using dotnet_store.Models;
+using dotnet_store.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddTransient<IEmailService, SmtpEmailService>();
+builder.Services.AddTransient<ICartService, CartService>();
 builder.Services.AddControllersWithViews();
 
 

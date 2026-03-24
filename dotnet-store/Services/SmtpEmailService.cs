@@ -1,7 +1,9 @@
 using System.Net;
 using System.Net.Mail;
 
-namespace dotnet_store.Models;
+namespace dotnet_store.Services;
+
+
 
 public interface IEmailService
 {

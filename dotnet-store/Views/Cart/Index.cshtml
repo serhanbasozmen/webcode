@@ -33,14 +33,13 @@
                         {
                             <li class="py-3 mb-2 border-top list-group-item">
                                 <div class="row align-items-center">
-                                    <div class="col-8">
+                                    <div class="col-7">
                                         <div class="d-flex align-items-center">
                                             <img src="~/img/@item.Product.Image" style="width: 100px" alt="" />
                                             <div class="ms-3">
                                                 <a class="text-decoration-none" href="#">
                                                     <h6 class="mb-0">@item.Product.ProductName</h6>
                                                 </a>
-                                                <i class="fa-solid fa-trash-can"></i>Delete
                                             </div>
                                         </div>
                                     </div>
@@ -49,6 +48,15 @@
                                     </div>
                                     <div class="col-2 text-center">
                                         <span class="fw-bold">@item.Product.Price</span>
+                                    </div>
+                                    <div class="col-1">
+                                        <form action="/Cart/RemoveItem" method="post">
+                                            <input type="hidden" name="productId" value="@item.ProductId">
+                                            <input type="hidden" name="amount" value="@item.Amount">
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </li>
@@ -65,7 +73,7 @@
                                         <div class="me-auto">
                                             <div>Order Total</div>
                                         </div>
-                                        <span>1000 ₺</span>
+                                        <span>@Model.SubTotal() ₺</span>
                                     </div>
                                     <div class="d-flex justifty-content-center align-items-center list-group-item">
                                         <div class="me-auto">
@@ -77,13 +85,13 @@
                                         <div class="me-auto">
                                             <div>Tax Fee(20%)</div>
                                         </div>
-                                        <span>200₺</span>
+                                        <span>@(Model.SubTotal() * 0.2) ₺</span>
                                     </div>
                                     <div class="d-flex justifty-content-center align-items-center list-group-item">
                                         <div class="me-auto">
                                             <div>Totally</div>
                                         </div>
-                                        <span>1200₺</span>
+                                        <span>@Model.Total() ₺</span>
                                     </div>
                                 </div>
                             </div>

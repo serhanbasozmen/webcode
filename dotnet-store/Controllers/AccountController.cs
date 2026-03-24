@@ -1,10 +1,10 @@
 using System.Security.Claims;
 using dotnet_store.Models;
+using dotnet_store.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_store.Controllers;
 
@@ -12,13 +12,16 @@ public class AccountController : Controller
 {
     private UserManager<AppUser> _usermanager;
     private SignInManager<AppUser> _signInManager;
-
     private IEmailService _emailService;
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService)
+    private readonly DataContext _context;
+    private readonly ICartService _cartService;
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService, DataContext context, ICartService cartService)
     {
         _usermanager = userManager;
         _signInManager = signInManager;
         _emailService = emailService;
+        _context = context;
+        _cartService = cartService;
     }
 
     public ActionResult Create()
@@ -71,6 +74,9 @@ public class AccountController : Controller
                     await _usermanager.ResetAccessFailedCountAsync(user);
                     await _usermanager.SetLockoutEndDateAsync(user, null);
 
+                    await _cartService.TransferCartToUser(user.UserName!);
+
+
                     if (!string.IsNullOrEmpty(returnUrl))
                     {
                         return Redirect(returnUrl);
@@ -100,7 +106,6 @@ public class AccountController : Controller
         }
         return View();
     }
-
 
     [Authorize]
     public async Task<ActionResult> LogOut()
