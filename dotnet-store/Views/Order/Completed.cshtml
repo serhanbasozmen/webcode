@@ -1,0 +1,26 @@
+@model string
+
+@section Bar {
+    <section class="bg-primary p-3">
+        <div class="container">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="#">Homepage</a>
+                    </li>
+                    <li class="breadcrumb-item">Order Completed</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+}
+
+<div class="card card-body my-4 text-center">
+    <h1 class="h3">Thanks</h1>
+    <p>
+        #@Model Your order number has been registered.
+    </p>
+    <p>
+        <a href="#" class="btn btn-primary">View Orders</a>
+    </p>
+</div>
