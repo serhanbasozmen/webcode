@@ -1,0 +1,54 @@
+@{
+    Layout = "_AdminLayout";
+}
+
+
+@model List<Order>
+
+ 
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header py-1">
+                <h5 class="card-title">Orders</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-strip mb-0">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th>Order Id</th>
+                                <th>Username</th>
+                                <th>Totally</th>
+                                <th>Date</th>
+                                <th>State</th>
+                                <th style="width: 40px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.FullName</td>
+                                    <td>@item.TotalPrice ₺</td>
+                                    <td>@item.OrderDate</td>
+                                    <td>
+                                        <span class="badge bg-success">Delivered</span>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="Order" asp-action="Details" asp-route-id="@item.Id"
+                                               class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-right-long"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      

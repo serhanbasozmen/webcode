@@ -8,4 +8,10 @@ public class OrderCreateModel
     public string PostCode { get; set; } = null!;
     public string Phone { get; set; } = null!;
     public string? OrderNote { get; set; }
+    public string CartName { get; set; } = null!;
+    public string CartNumber { get; set; } = null!;
+    public string CartExpirationYear { get; set; } = null!;
+    public string CartExpirationMonth { get; set; } = null!;
+    public string CartCVV { get; set; } = null!;
+
 }

@@ -1,0 +1,90 @@
+@model Order
+@{
+    Layout = "_AdminLayout";
+}
+
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header py-1 d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Order No: #5</h5>
+                <span class="badge bg-success p-2">Delivered</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-strip mb-2">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th style="width: 40px">Id</th>
+                                <th style="width: 80px">Picture</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Totally</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td><img src="~/img/@item.product.Image" alt="" class="img-fluid" /></td>
+                                    <td>@item.product.ProductName</td>
+                                    <td>@item.Price ₺</td>
+                                    <td>@item.Amount</td>
+                                    <td>
+                                        @(item.Price* item.Amount)₺
+                                    </td>
+                                </tr>
+                            }
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Subtotal</td>
+                                <td>@Model.SubTotal() ₺</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Tax</td>
+                                <td>@(Model.SubTotal() * 0.2) ₺ (%20)</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Cargo</td>
+                                <td>Free Delivery</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Totally</td>
+                                <td>@Model.TotalPrice ₺</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered mb-0">
+                        <tr>
+                            <td style="width: 150px">Delivery Date</td>
+                            <td>@Model.OrderDate</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 150px">Name Surname</td>
+                            <td>@Model.FullName</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 150px">Delivery Address</td>
+                            <td>@Model.AddressLine / @Model.City / @Model.PostCode / @Model.Phone</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 150px">İnvoice Address</td>
+                            <td>@Model.AddressLine / @Model.City / @Model.PostCode / @Model.Phone</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 150px">Payment</td>
+                            <td>1432-15**-****-****(Visa)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+       

@@ -14,6 +14,15 @@ public class Order
     public string OrderNote { get; set; } = null!;
 
     public List<OrderItem> OrderItems { get; set; } = new();
+
+    public double SubTotal()
+    {
+        return OrderItems.Sum(i => i.Price * i.Amount);
+    }
+    public double Total()
+    {
+        return OrderItems.Sum(i => i.Price * i.Amount) * 1.2;
+    }
 }
 
 public class OrderItem
