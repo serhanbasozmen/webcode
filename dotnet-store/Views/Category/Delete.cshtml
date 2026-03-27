@@ -8,14 +8,14 @@
     <div class="col">
         <div class="card">
             <div class="card-body text-center shadow rounded-4 fs-4 fw-bold text-danger">
-       <p>
-        @Model.CategoryId are you sure the delete this category ?
-        </p>
-        <form asp-controller="Category" asp-action="DeleteConfirm" method="post">
-            <input type="hidden" name="id" value="@Model.Id">
-            <button type="submit" class="btn btn-danger p-2 m-2">Delete</button>
-            <a asp-controller="Category" asp-action="Index" class="btn btn-info p-2 m-2">Cancel</a>
-        </form>
+                <p>
+                    @Model.CategoryId are you sure the delete this category ?
+                </p>
+                <form asp-controller="Category" asp-action="DeleteConfirm" method="post">
+                    <input type="hidden" name="id" value="@Model.Id">
+                    <button type="submit" class="btn btn-danger p-2 m-2">Delete</button>
+                    <a asp-controller="Category" asp-action="Index" class="btn btn-info p-2 m-2">Cancel</a>
+                </form>
             </div>
         </div>
        

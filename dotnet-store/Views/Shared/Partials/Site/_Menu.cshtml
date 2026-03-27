@@ -1,9 +1,9 @@
 @model List<Category>
 
  
- <nav class="nav nav-pills flex-column flex-nowrap overflow-auto slider_nav">
-            @foreach(var category in Model)
-            {
-               <a href="/products/@category.Url" class="nav-link">@category.CategoryId</a>
-            }
-  </nav>
+<nav class="nav nav-pills flex-column flex-nowrap overflow-auto slider_nav">
+    @foreach (var category in Model)
+    {
+        <a href="/products/@category.Url" class="nav-link">@category.CategoryId</a>
+    }
+</nav>

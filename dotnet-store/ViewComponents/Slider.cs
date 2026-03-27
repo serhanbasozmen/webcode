@@ -5,7 +5,7 @@ namespace dotnet_store.ViewComponents;
 
 public class Slider : ViewComponent
 {
-      private readonly DataContext _context;
+    private readonly DataContext _context;
 
     public Slider(DataContext context)
     {

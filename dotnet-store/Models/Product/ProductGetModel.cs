@@ -8,5 +8,5 @@ public class ProductGetModel
     public string? Image { get; set; }
     public bool IsActive { get; set; }
     public bool Homepage { get; set; }
-    public string CategoryId { get; set; }  = null!;
+    public string CategoryId { get; set; } = null!;
 }

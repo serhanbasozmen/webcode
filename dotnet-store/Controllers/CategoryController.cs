@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 namespace dotnet_store.Controllers;
 
 
-[Authorize(Roles ="Admin")]
-public class CategoryController:Controller
+[Authorize(Roles = "Admin")]
+public class CategoryController : Controller
 {
 
     private readonly DataContext _context;
@@ -37,29 +37,29 @@ public class CategoryController:Controller
     [HttpPost]
     public ActionResult Create(CategoryCreateModel model)
     {
-            if(ModelState.IsValid)
-            {
+        if (ModelState.IsValid)
+        {
             var entity = new Category
             {
                 CategoryId = model.CategoryId,
-                Url= model.Url
+                Url = model.Url
             };
 
             _context.Categories.Add(entity);
             _context.SaveChanges();
-            
+
             return RedirectToAction("Index");
         }
-        return View (model);
+        return View(model);
     }
 
-    public ActionResult Edit(int id )
+    public ActionResult Edit(int id)
     {
         var entity = _context.Categories.Select(i => new CategoryEditModel
         {
-             Id = i.Id,
-             CategoryId = i.CategoryId,
-             Url = i.Url
+            Id = i.Id,
+            CategoryId = i.CategoryId,
+            Url = i.Url
         }).FirstOrDefault(i => i.Id == id);
 
         return View(entity);
@@ -70,71 +70,71 @@ public class CategoryController:Controller
     [HttpPost]
     public ActionResult Edit(int id, CategoryEditModel model)
     {
-       if(id != model.Id)
+        if (id != model.Id)
         {
             return RedirectToAction("Index");
         }
 
-        if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            
-        
 
-        var entity = _context.Categories.FirstOrDefault(i => i.Id == model.Id);
 
-        if(entity != null)
-        {
-            entity.CategoryId = model.CategoryId;
-            entity.Url = model.Url;
 
-            _context.SaveChanges();
+            var entity = _context.Categories.FirstOrDefault(i => i.Id == model.Id);
 
-            TempData["Message"] = $"{entity.CategoryId} category updated";            
+            if (entity != null)
+            {
+                entity.CategoryId = model.CategoryId;
+                entity.Url = model.Url;
 
-            return RedirectToAction("Index");
+                _context.SaveChanges();
+
+                TempData["Message"] = $"{entity.CategoryId} category updated";
+
+                return RedirectToAction("Index");
+            }
         }
-    }
 
-       return View(model);
-   
+        return View(model);
+
     }
 
     public ActionResult Delete(int? id)
     {
-        if(id == null)
+        if (id == null)
         {
             return RedirectToAction("Index");
         }
 
         var entity = _context.Categories.FirstOrDefault(i => i.Id == id);
 
-        if(entity != null)
+        if (entity != null)
         {
-          return View(entity);
+            return View(entity);
         }
-            return RedirectToAction("Index");
+        return RedirectToAction("Index");
     }
 
-   [HttpPost]
+    [HttpPost]
     public ActionResult DeleteConfirm(int? id)
     {
-        if(id == null)
+        if (id == null)
         {
             return RedirectToAction("Index");
         }
 
         var entity = _context.Categories.FirstOrDefault(i => i.Id == id);
 
-        if(entity != null)
+        if (entity != null)
         {
             _context.Categories.Remove(entity);
             _context.SaveChanges();
 
 
-             TempData["Message"] = $"{entity.CategoryId} category deleted.";            
+            TempData["Message"] = $"{entity.CategoryId} category deleted.";
 
         }
-            return RedirectToAction("Index");
+        return RedirectToAction("Index");
     }
 
 }

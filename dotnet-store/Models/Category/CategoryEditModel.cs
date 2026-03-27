@@ -6,16 +6,16 @@ public class CategoryEditModel
 {
 
     public int Id { get; set; }
-    
-    [Display(Name ="CategoryId")]
+
+    [Display(Name = "CategoryId")]
     [Required]
     [StringLength(30)]
-    public string CategoryId  { get; set; } = null!;
+    public string CategoryId { get; set; } = null!;
 
-    [Display(Name ="URL")]
+    [Display(Name = "URL")]
     [Required]
     [StringLength(30)]
 
 
-    public string Url { get; set; } =null!;
+    public string Url { get; set; } = null!;
 }

@@ -8,31 +8,31 @@
     <div class="col">
         <div class="card">
             <div class="card-body text-center shadow rounded-4 fs-4 fw-bold text-danger">
-       <p>
-        @Model.Name are you sure the delete this role ?
-        </p>
+                <p>
+                    @Model.Name are you sure the delete this role ?
+                </p>
 
-        <form asp-action="DeleteConfirm" method="post">
-            <input type="hidden" name="id" value="@Model.Id">
+                <form asp-action="DeleteConfirm" method="post">
+                    <input type="hidden" name="id" value="@Model.Id">
 
-            @if(ViewBag.Users.Count > 0)
-            {
-                 @foreach(var item in ViewBag.Users)
-                {
-                    <p>
-                        @item
-                    </p>
-                }
+                    @if (ViewBag.Users.Count > 0)
+                    {
+                        @foreach (var item in ViewBag.Users)
+                        {
+                            <p>
+                                @item
+                            </p>
+                        }
  
-            }
-            else
-            {
-            <button type="submit" class="btn btn-danger p-2 m-2">Delete</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-danger p-2 m-2">Delete</button>
 
-            }
+                    }
 
-            <a asp-action="Index" class="btn btn-info p-2 m-2">Cancel</a>
-        </form>
+                    <a asp-action="Index" class="btn btn-info p-2 m-2">Cancel</a>
+                </form>
             </div>
         </div>
        

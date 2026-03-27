@@ -30,6 +30,7 @@ builder.Services.Configure<IdentityOptions>(Options =>
 
     Options.User.RequireUniqueEmail = true;
     //    Options.User.AllowedUserNameCharacters="abcdefghijklmnopqrstuvwxy0123456789";
+    // if I activate line thirty-two alloweduserchars changes.
 
     Options.Lockout.MaxFailedAccessAttempts = 5;
     Options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);

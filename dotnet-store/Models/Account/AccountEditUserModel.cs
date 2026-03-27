@@ -5,13 +5,13 @@ namespace dotnet_store.Models;
 public class AccountEditUserModel
 {
     [Required]
-    [Display(Name ="Full Name")]
+    [Display(Name = "Full Name")]
     public string FullName { get; set; } = null!;
 
     [Required]
-    [Display(Name ="Email")]
+    [Display(Name = "Email")]
     [EmailAddress]
-    public string Email{ get; set; } = null!;
+    public string Email { get; set; } = null!;
 
- 
+
 }

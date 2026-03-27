@@ -1,69 +1,60 @@
- @model List<CategoryGetModel>
- @{
-    Layout= "_AdminLayout";
- }
+@model List<CategoryGetModel>
+@{
+    Layout = "_AdminLayout";
+}
  
- <div class="row">
-        <div class="col">
-          <div class="card shadow">
-            <div
-              class="card-header py-1 d-flex justify-content-between align-items-center"
-            >
-              <h5 class="card-title">Categories</h5>
-              <a  asp-controller="Category" asp-action="Create" class="btn btn-sm btn-primary">
-                <i class="fa-solid fa-plus"></i>
-              </a>
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header py-1 d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Categories</h5>
+                <a asp-controller="Category" asp-action="Create" class="btn btn-sm btn-primary">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered table-strip mb-0">
-                  <thead class="table-secondary">
-                    <tr>
-                      <th>Category Id</th>
-                      <th>Category Name</th>
-                      <th>Url</th>
-                      <th>Number Of Product</th>
-                      <th style="width: 90px"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach(var cat in Model)
-                    {
-                    <tr>
-                      <td>@cat.Id</td>
-                      <td>@cat.CategoryId</td>
-                      <td>@cat.Url</td>
-                      <td>@cat.ProductNumber</td>
-                      <td class="text-nowrap">
-                        <a
-                           asp-controller="Category"
-                           asp-action="Edit" 
-                           asp-route-id="@cat.Id"
-                          class="btn btn-primary btn-sm"
-                        >
-                          <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <a asp-controller="Product" asp-action="Index" asp-route-category="@cat.Id" class="btn btn-primary btn-sm">
-                          <i class="fa-solid fa-right-long"></i>
-                        </a>
-                        @if(cat.ProductNumber == 0 )
-                         {
-                          <a
-                           asp-controller="Category"
-                           asp-action="Delete" 
-                           asp-route-id="@cat.Id"
-                          class="btn btn-danger btn-sm"
-                        >
-                          <i class="fa-solid fa-trash"></i>
-                        </a>
-                         }
-                      </td>
-                    </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-strip mb-0">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th>Category Id</th>
+                                <th>Category Name</th>
+                                <th>Url</th>
+                                <th>Number Of Product</th>
+                                <th style="width: 90px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cat in Model)
+                            {
+                                <tr>
+                                    <td>@cat.Id</td>
+                                    <td>@cat.CategoryId</td>
+                                    <td>@cat.Url</td>
+                                    <td>@cat.ProductNumber</td>
+                                    <td class="text-nowrap">
+                                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@cat.Id"
+                                               class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a asp-controller="Product" asp-action="Index" asp-route-category="@cat.Id"
+                                               class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-right-long"></i>
+                                        </a>
+                                        @if (cat.ProductNumber == 0)
+                                        {
+                                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@cat.Id"
+                                                   class="btn btn-danger btn-sm">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>

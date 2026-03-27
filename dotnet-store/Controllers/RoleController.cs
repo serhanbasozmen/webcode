@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace dotnet_store.Controllers;
 
-[Authorize(Roles ="Admin")]
+[Authorize(Roles = "Admin")]
 public class RoleController : Controller
 {
     private RoleManager<AppRole> _roleManager;
     private UserManager<AppUser> _userManager;
-    public RoleController (RoleManager<AppRole> roleManager,UserManager<AppUser> userManager)
+    public RoleController(RoleManager<AppRole> roleManager, UserManager<AppUser> userManager)
     {
-        _roleManager = roleManager;   
-        _userManager = userManager; 
+        _roleManager = roleManager;
+        _userManager = userManager;
     }
     public ActionResult Index()
     {
@@ -27,18 +27,18 @@ public class RoleController : Controller
     [HttpPost]
     public async Task<ActionResult> Create(RoleCreateModel model)
     {
-        if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            var role = new AppRole{Name = model.RoleName};
+            var role = new AppRole { Name = model.RoleName };
             var result = await _roleManager.CreateAsync(role);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return RedirectToAction("Index");
             }
-            foreach(var error in result.Errors)
+            foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("",error.Description);
+                ModelState.AddModelError("", error.Description);
             }
         }
         return View(model);
@@ -48,9 +48,9 @@ public class RoleController : Controller
     {
         var entity = await _roleManager.FindByIdAsync(id);
 
-        if(entity != null)
+        if (entity != null)
         {
-            return View(new RoleEditModel{Id=entity.Id,RoleName=entity.Name!});
+            return View(new RoleEditModel { Id = entity.Id, RoleName = entity.Name! });
         }
 
         return RedirectToAction("Index");
@@ -58,39 +58,39 @@ public class RoleController : Controller
 
 
     [HttpPost]
-     public async Task<ActionResult> Edit(string id,RoleEditModel model)
+    public async Task<ActionResult> Edit(string id, RoleEditModel model)
     {
-         if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            var entity=await _roleManager.FindByIdAsync(id);
+            var entity = await _roleManager.FindByIdAsync(id);
 
-            if(entity != null)
+            if (entity != null)
             {
                 entity.Name = model.RoleName;
                 var result = await _roleManager.UpdateAsync(entity);
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     return RedirectToAction("Index");
                 }
-                foreach(var error in result.Errors)
+                foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError("",error.Description);
+                    ModelState.AddModelError("", error.Description);
                 }
             }
         }
         return View(model);
     }
 
-    
+
     public async Task<ActionResult> Delete(string? id)
     {
-        if(id == null)
+        if (id == null)
         {
             return RedirectToAction("Index");
         }
         var entity = await _roleManager.FindByIdAsync(id);
 
-        if(entity != null)
+        if (entity != null)
         {
             ViewBag.Users = await _userManager.GetUsersInRoleAsync(entity.Name!);
             return View(entity);
@@ -101,20 +101,20 @@ public class RoleController : Controller
 
     public async Task<ActionResult> DeleteConfirm(string? id)
     {
-        if(id == null)
+        if (id == null)
         {
             return RedirectToAction("Index");
         }
 
-          var entity = await _roleManager.FindByIdAsync(id);
+        var entity = await _roleManager.FindByIdAsync(id);
 
-        if(entity != null)
+        if (entity != null)
         {
-          await _roleManager.DeleteAsync(entity);
+            await _roleManager.DeleteAsync(entity);
 
-          TempData["Message"] = $"{entity.Name} this role deleted.";
+            TempData["Message"] = $"{entity.Name} this role deleted.";
         }
-        
+
         return RedirectToAction("Index");
 
     }
