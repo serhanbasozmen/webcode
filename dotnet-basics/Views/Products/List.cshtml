@@ -3,14 +3,14 @@
 
 <div class="row">
    
-   @foreach(Product p in Model)
-   {
-    @if(p.productStock)
-     {
-     <div class="col-md-3">
-     @await Html.PartialAsync("_ProductCard", p)
-     </div>
-     }
-   }
+    @foreach (Product p in Model)
+    {
+        @if (p.productStock)
+        {
+            <div class="col-md-3">
+                @await Html.PartialAsync("_ProductCard", p)
+            </div>
+        }
+    }
 
 </div>

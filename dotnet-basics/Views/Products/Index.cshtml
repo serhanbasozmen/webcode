@@ -1,20 +1,20 @@
 @model List<Product>
 
- <div class="d-flex justify-content-between aling-items-center">
+<div class="d-flex justify-content-between aling-items-center">
     <h1 class="h3 mb-3">Products</h1>
     <a asp-controller="Products" asp-action="List" class="btn btn-outline-warning">All Products</a>
-  </div>
+</div>
 
 <div class="row">
    
-   @foreach(Product p in Model)
-   {
-    @if(p.productStock)
-     {
-     <div class="col-md-3">
-     @await Html.PartialAsync("_ProductCard", p)
-     </div>
-     }
-   }
+    @foreach (Product p in Model)
+    {
+        @if (p.productStock)
+        {
+            <div class="col-md-3">
+                @await Html.PartialAsync("_ProductCard", p)
+            </div>
+        }
+    }
 
 </div>

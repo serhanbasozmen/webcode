@@ -2,11 +2,12 @@ using dotnet_basics.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_basics.Controllers;
-    public class ProductsController : Controller
-    {
-        List<Product> products =
-        [
-            new Product { Id=1, productExplation="niceeee", productPrice=40000, productImage="i1.png", productTitle="samsung s25 ultra", productStock=true, IsHome=true
+
+public class ProductsController : Controller
+{
+    List<Product> products =
+    [
+        new Product { Id=1, productExplation="niceeee", productPrice=40000, productImage="i1.png", productTitle="samsung s25 ultra", productStock=true, IsHome=true
             },
             new Product { Id=2, productExplation="it's fine", productPrice=20000, productImage="i2.png", productTitle="samsung s23 max", productStock=true, IsHome=true
             },
@@ -16,26 +17,25 @@ namespace dotnet_basics.Controllers;
             },
         ];
 
-        public ActionResult Index()
-        {
-         List<Product> products = this.products.Where(p => p.IsHome).ToList();
+    public ActionResult Index()
+    {
+        List<Product> products = this.products.Where(p => p.IsHome).ToList();
         return View(products);
-        }
+    }
 
-        public ActionResult List()
+    public ActionResult List()
     {
         return View(products);
     }
 
 
-  public ActionResult Details(int id)
+    public ActionResult Details(int id)
     {
-  
-       Product? product = products.Where(p => p.Id == id).FirstOrDefault();
-        return View(product); 
+
+        Product? product = products.Where(p => p.Id == id).FirstOrDefault();
+        return View(product);
     }
 
-    }
+}
 
 
- 

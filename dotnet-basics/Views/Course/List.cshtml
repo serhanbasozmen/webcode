@@ -1,16 +1,16 @@
 @using System.Security.Cryptography
- @* @model Course[] *@
- @* @model IEnumerable<Course>[] *@
- @model List<Course>
+@* @model Course[] *@
+@* @model IEnumerable<Course>[] *@
+@model List<Course>
  
-    <h1 class="h3 mb-3">All Courses</h1>
-    <div class="row">
+<h1 class="h3 mb-3">All Courses</h1>
+<div class="row">
 
-    @foreach(Course course in Model )
+    @foreach (Course course in Model)
     {
 
         <div class="col-md-3">
-          @await Html.PartialAsync("_CourseCard", course )
+            @await Html.PartialAsync("_CourseCard", course)
         </div>
-     }
- </div>
+    }
+</div>
